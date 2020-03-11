@@ -6,7 +6,7 @@ $password="";
 $nameErr = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    test_all($_POST);
+    test_all($_POST[]);
 
 
       if (!empty($_POST["username"])) {
