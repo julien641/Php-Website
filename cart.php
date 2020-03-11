@@ -19,14 +19,27 @@
 <body id="body">
 <div>
     <?php
+    require 'alogrithem_cart.php';
+
+    session_start();
+        foreach ($_SESSION as $key=>$value){
 
 
 
 
-        echo 'hello';
-
+        }
 
     ?>
 </div>
+<br>
+<?php
+
+$objectslist=queryobjects();
+
+
+echo 'hello';
+
+
+?>
     </body>
     </html>

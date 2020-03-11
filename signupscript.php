@@ -2,18 +2,10 @@
 require 'db_info.php';
 require 'db_library.php';
 
-$inputErr = true;
-$emailErr = true;
+
 //echo 'hi';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $username = "";
-    $password = "";
-    $email = "";
-    $dateofbirth = "";
-    $firstname = "";
-    $lastname = "";
-    $country = "";
     //firstname
     $cleanbool = false;
     if ($_POST["password"] == $_POST["repeat_password"]) {
@@ -48,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $rc_login = query($db_info, "INSERT INTO login (pw, uname,email,firstname,lastname,privilege) values ( ? , ? , ?,? , ? , ? )",$executes , true);
          //   echo 'login success';
             $rc_login_id = query($db_info, "SELECT login_id,privilege from login , WHERE uname= ? AND pw= ?", array('ss', $clean["username"], $pass), false);
+            session_start();
             $_SESSION["ID"]=$rc_login_id[0]["login_id"];
             $_SESSION["privilege"]=$rc_login_id[0]["privilege"];
           //  var_dump($_SESSION);
