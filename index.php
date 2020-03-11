@@ -21,7 +21,7 @@
 
 <!--   <?php
 
-    exit;
+    
     ?>-->
 
         <div id="topportion">

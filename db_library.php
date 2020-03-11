@@ -1,7 +1,7 @@
 <?php
 require 'db_info.php';
 
-$db_info = array($servername,$dbmy_user,$dbpassword1,$database);
+
 function query($db_info, $QZ, $array, $close)
 {
     $mysqli = new mysqli($db_info[0], $db_info[1], $db_info[2], $db_info[3]);
@@ -11,9 +11,10 @@ function query($db_info, $QZ, $array, $close)
     }
 
 
-    // var_dump($array);
     $prepared = $mysqli->prepare($QZ) or die("Failed to prepare the statement");
-    call_user_func_array(array($prepared, 'bind_param'), refValues($array));
+
+    //var_dump($prepared);
+    call_user_func_array(array($prepared, 'bind_param'), ($array));
     $prepared->execute() or die("failed to execute");
 
 
@@ -59,15 +60,40 @@ function refValues($arr)
     }
     return $arr;
 }
-function test_all($arr){
+function strip_all($arr){
+    $clean=array();
     foreach ($arr as $param_name => $param_val) {
-        echo "Param: $param_name; Value: $param_val<br />\n";
-    }
 
+            $clean["$param_name"]=test_input($param_val);
+        }
+     //   echo "Param: $param_name; Value: $param_val<br />\n";
+
+    return $clean;
 
 
 }
+function checkarrayfilled($arr){
+    if(is_null($arr)){
+        return false;
 
+
+    }
+    if(empty($arr)){
+
+        return false;
+
+    }
+
+    foreach ($arr as $param_name => $param_val) {
+
+        if(empty($param_val)){
+            return false;
+        }
+    }
+return true;
+
+
+}
 function test_input($data)
 {
     $data = trim($data);
