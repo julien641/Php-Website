@@ -59,7 +59,14 @@ function refValues($arr)
     }
     return $arr;
 }
+function test_all($arr){
+    foreach ($arr as $param_name => $param_val) {
+        echo "Param: $param_name; Value: $param_val<br />\n";
+    }
 
+
+
+}
 
 function test_input($data)
 {

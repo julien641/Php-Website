@@ -22,7 +22,9 @@
     <?php
     if(isset( $_SESSION['privilege'])){
             header('Location:home.php');
+    }else{
     }
+    exit;
     ?>
 
         <div id="topportion">
@@ -30,6 +32,7 @@
                 <span id="homepagetoprightspan">  
           <button id="loginbutton" onclick="location.href='loginpage.php';" type="button"><div id="buttontext">login</div></button>
         <button id="signup" type="button" onclick="location.href='signuppage.php';" ><div id="buttontext">Sign up</div></button>
+
         </span>
             </div>
             <div id="fb-root"></div>
