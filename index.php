@@ -19,13 +19,10 @@
 
 <body>
 
-    <?php
-    if(isset( $_SESSION['privilege'])){
-            header('Location:home.php');
-    }else{
-    }
+<!--   <?php
+
     exit;
-    ?>
+    ?>-->
 
         <div id="topportion">
             <div id="homepagetopright">
