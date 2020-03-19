@@ -17,33 +17,31 @@
 
 </head>
 <body id="body">
-
-<div>
+<form action="addObject.php" method="POST" enctype="multipart/form-data">
+    <label for="fname">Item name:</label>
+    <br>
+    <input type="text" id="name" name="name">
+    <br>
+    <label for="fcost">cost</label><br>
+    <input type="tel" id="idcost" name="ncost" pattern="[0-9]{0,}.{0,1}[0-9]{0,2}">
+    <br>
+    <label for="forimage">Select a image:</label>
+    <input type="file" id="ifile" name="nfile">
+    <!--
+    item name
+    cost
+    picture
+    description
+    -->
+     <br>
+     <input type="submit" value="Submit">
     <?php
-   // require 'algorithm_cart.php';
+    session_start();
+    var_dump($_SESSION);
 
-   // session_start();
-     //   foreach ($_SESSION as $key=>$value){
-
-
-
-
-    //    }
 
     ?>
-</div>
-<br>
-<?php
+ </form>
 
-
-require 'algorithm_cart.php';
-$objectslist=queryobjects();
-
-var_dump($objectslist);
-
-echo 'hello';
-
-
-?>
-    </body>
-    </html>
+ </body>
+ </html>

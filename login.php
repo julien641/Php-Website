@@ -1,4 +1,5 @@
 <?php
+global $db_info;
 require 'db_library.php';
 require 'db_info.php';
 $username="";
@@ -21,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             session_start();
             $_SESSION["id"] = $rc_login[0]["login_id"];
             $_SESSION['privilege'] = $rc_login[0]['privilege'];
-
+            $_SESSION['username'] =$clean["username"];
             header('Location:index.php');
 
 
