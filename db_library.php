@@ -1,5 +1,6 @@
 <?php
-require 'db_info.php';
+global $db_info;
+require_once 'db_info.php';
     function fileuploader($file,$dir)
     {
   //      error_reporting(E_ALL);
@@ -90,19 +91,20 @@ function dirmaker($dir)
 
 function query($db_info, $QZ, $array, $close)
 {
-    $mysqli = new mysqli($db_info[0], $db_info[1], $db_info[2], $db_info[3]);
+
+    $mysqli = new mysqli($db_info["address"], $db_info["user"], $db_info["password"], $db_info["database"]);
     if ($mysqli->connect_errno) {
         printf("Connect failed: %s\n", $mysqli->connect_error);
         exit();
     }
 
 
-    $prepared = $mysqli->prepare($QZ) or die("Failed to prepare the statement");
-
-    //var_dump($prepared);
-    if (!is_null($array)) {
+    $prepared = $mysqli->prepare($QZ) or die($prepared->error );
+//var_dump($array);
+    if (!(null===$array)) {
         call_user_func_array(array($prepared, 'bind_param'), ($array));
     }
+   // var_dump($prepared);
     $prepared->execute() or die("failed to execute");
 
 

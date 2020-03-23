@@ -30,7 +30,7 @@
           <button id="loginbutton" onclick="location.href='loginpage.php';" type="button"><div id="buttontext">login</div></button>
         <button id="signup" type="button" onclick="location.href='signuppage.php';" ><div id="buttontext">Sign up</div></button>
         <button id="addObject" type="button" onclick="location.href='objectform.php';" ><div id="buttontext">addObject</div></button>
-
+ <button id="cart" type="button" onclick="location.href='cart.php';" ><div id="cart">cart</div></button>
         </span>
             </div>
             <div id="fb-root"></div>

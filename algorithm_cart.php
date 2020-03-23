@@ -1,55 +1,57 @@
 <?php
 
-
-
-function queryobjects(){
+function queryobjects($id){
     global $db_info;
-    require 'db_info.php';
-    require 'db_library.php';
-
+    require_once 'db_info.php';
+    require_once 'db_library.php';
     $qz="SELECT * from objects";
+    $array=null;
 
-    $array=query($db_info,$qz,NULL,false);
+        if($id !=null){
+            $qz= $qz." where Objects_ID in(?";
 
-    return $array;
+            $array=array();
+            $array[0]="";
+            foreach ($id as $x=>$value){
+
+                $array[0]=$array[0]."i";
+                $array[] =$value['objects_id']+0;
+
+            }
+         //   var_dump(count($array));
+           for($i=2;$i<count($array);$i++){
+               $qz=$qz.',?';
+           }
+
+            $qz=$qz.")";
+       //     var_dump($qz);
+        }
+  //  var_dump($array);
+    $objects=query($db_info,$qz,$array,false);
+
+    return $objects;
 }
 
 
-class carts
-{
-   static function addtocart($id)
+    function addtocart($id)
     {
-        session_start();
-        $_SESSION['cart'];
+
     }
 
-   static function removefromcart($id)
+    function removefromcart($id)
     {
         session_start();
        // $_SESSION['cart'].unset($id);
 
     }
 
-    static function querycart($id)
+     function querycart($id)
     {
 
 
     }
-}
 
 
-class item{
-    public $id;
-    public $amount=0;
-    public $cost;
-    public function __construct($id, $cost){
-        $this->id=$id;
-        $this->cost=$cost;
-    }
-
-
-
-}
 
 
 
